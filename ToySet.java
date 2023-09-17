@@ -8,16 +8,21 @@ public class ToySet implements Loterable<Toy>{
     List<Toy> toys;
     Map<Toy, Integer> toysSet;
 
+    
     public ToySet() {
         this.toys = new LinkedList<Toy>();
         this.toysSet = new HashMap<>();
     }
-
+    
+    public Map<Toy, Integer> getToysSet() {
+        return toysSet;
+    }
+    
     public void add(Toy toy) {
         toys.add(toy);
         this.add(toy, 1);
     }
-
+    
     public void add(Toy toy, int quantity){
         if(toysSet.containsKey(toy)){
             int count = toysSet.get(toy) + quantity;
@@ -27,20 +32,7 @@ public class ToySet implements Loterable<Toy>{
         }
     }
 
-    // public void setWeight(int toyId, int weight) {
-    //     for (Toy toy : toys) {
-    //         if (toy.getId() == toyId) {
-    //             toy.setWeight(weight);
-    //             break;
-    //         }
-    //     }
-    // }
-
     public Toy getToy(int id) {
-        // for (Toy toy : toys) {
-        //     if (toy.getId() == id) return toy;
-        // }
-        // return null;
         for (Toy toy : toysSet.keySet()) {
             if(toy.getId() == id)
                 return toy;
@@ -49,39 +41,13 @@ public class ToySet implements Loterable<Toy>{
     }
 
     public int getSize(){
-        // return toys.size();
         return toysSet.size();
     }
 
-    // public void extractItem(Toy toy){
-    //     // for (Toy itemToy : toys) {
-    //     //     if(itemToy.getId() == toy.getId()){
-    //     //         int quantity = itemToy.getQuantity();
-    //     //         if(quantity > 1){
-    //     //             itemToy.setQuantity(quantity-1);
-    //     //         }else{
-    //     //             toys.remove(itemToy);
-    //     //         }
-    //     //         break;
-    //     //     }
-    //     // }
-    //     if(toysSet.containsKey(toy)){
-    //         int count = toysSet.get(toy);
-    //         if(count == 1){
-    //             toysSet.remove(toy);
-    //         }else{
-    //             toysSet.put(toy, --count);
-    //         }
-    //     }
-    // }
-
-
+    
     @Override
     public String toString() {
         StringJoiner joiner = new StringJoiner(", ", "{", "}");
-        // for (Toy toy : toys) {
-        //     joiner.add(toy.toString());
-        // }
         for (Toy toy : toysSet.keySet()) {
             String item = "[" +  toy.toString() + " q: " + toysSet.get(toy) + "]";
             joiner.add(item);
